@@ -211,7 +211,9 @@ InitialiseRFBConnection()
 	fprintf(stderr,"Cannot read valid password from file \"%s\"\n",
 		appData.passwordFile);
 	return False;
-      }
+      } /* added this to read the command line password */
+    } else if (appData.tpass) {
+	passwd = appData.tpass;
     } else {
       passwd = getpass("Password: ");
     }
