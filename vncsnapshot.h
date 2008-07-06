@@ -111,6 +111,7 @@ typedef struct {
   char gotCursorPos;
   int fps;
   int count;	/* number of snapshots to grab */
+  char * tpass; /* added for password on commandline */
 } AppData;
 
 extern AppData appData;

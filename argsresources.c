@@ -59,6 +59,7 @@ Options cmdLineOptions[] = {
   {"-vncQuality",    setNumber, &appData.qualityLevel, 0, " <JPEG-QUALITY-VALUE>: transmission quality level (0..9: 0-low, 9-high)"},
   {"-fps",           setNumber, &appData.fps, 0, " <FPS>: Wait <FPS> seconds between snapshots, default 60"},
   {"-count",         setNumber, &appData.count, 0, " <COUNT>: Capture <COUNT> images, default 1"},
+  {"-tpass",         setString, &appData.tpass, 0, " <password> : read password from commandline"},
   {NULL, NULL, NULL, 0}
 };
 
