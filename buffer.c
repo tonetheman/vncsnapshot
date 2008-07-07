@@ -133,15 +133,31 @@ CopyScreenToData(int x, int y, int w, int h)
     buffer = malloc(h * w * MY_BYTES_PER_PIXEL);
     cp = buffer;
 
-    for (row = 0; row < h; row++) {
-        for (col = 0; col < w; col++) {
-            *cp++ = rawBuffer[start++];
-            *cp++ = rawBuffer[start++];
-            *cp++ = rawBuffer[start++];
-            *cp++ = 0;
-        }
-        start += stride;
-    }
+    int byteorder=appData.byteorder;
+
+      for (row = 0; row < h; row++) {
+          for (col = 0; col < w; col++) {
+	      if (byteorder==0) {
+              *cp++ = rawBuffer[start++];
+              *cp++ = rawBuffer[start++];
+              *cp++ = rawBuffer[start++];
+              *cp++ = 0;
+              }
+              if (byteorder==1) {
+              char a = rawBuffer[start++];
+              char b = rawBuffer[start++];
+              char c = rawBuffer[start++];
+              *cp++ = c; *cp++ = b; *cp++ = a; *cp++ = 0; 
+              }
+              if (byteorder==2) {
+              char a = rawBuffer[start++];
+              char b = rawBuffer[start++];
+              char c = rawBuffer[start++];
+              *cp++ = a; *cp++ = c; *cp++ = b; *cp++ = 0;
+              }
+          }
+          start += stride;
+      }
 
     return buffer;
 }
