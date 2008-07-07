@@ -60,6 +60,7 @@ Options cmdLineOptions[] = {
   {"-fps",           setNumber, &appData.fps, 0, " <FPS>: Wait <FPS> seconds between snapshots, default 60"},
   {"-count",         setNumber, &appData.count, 0, " <COUNT>: Capture <COUNT> images, default 1"},
   {"-tpass",         setString, &appData.tpass, 0, " <password> : read password from commandline"},
+  {"-byteorder",     setNumber, &appData.byteorder, 0, "0 (default) - normal byte order"},
   {NULL, NULL, NULL, 0}
 };
 

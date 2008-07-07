@@ -112,6 +112,7 @@ typedef struct {
   int fps;
   int count;	/* number of snapshots to grab */
   char * tpass; /* added for password on commandline */
+  int byteorder; /* added for byte order on screen copy */
 } AppData;
 
 extern AppData appData;
