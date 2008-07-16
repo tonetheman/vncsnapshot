@@ -97,6 +97,7 @@ CopyDataToScreen(char *buffer, int x, int y, int w, int h)
     int start;
     int stride;
     int row, col;
+    char junk1, junk2, junk3;
     stride = si.framebufferWidth * RAW_BYTES_PER_PIXEL - w * RAW_BYTES_PER_PIXEL;
     start = (x + y * si.framebufferWidth) * RAW_BYTES_PER_PIXEL;
 
@@ -107,10 +108,20 @@ CopyDataToScreen(char *buffer, int x, int y, int w, int h)
             bufferBlank &= buffer[0] == 0 &&
                            buffer[1] == 0 &&
                            buffer[2] == 0;
-            rawBuffer[start++] = *buffer++;
-            rawBuffer[start++] = *buffer++;
-            rawBuffer[start++] = *buffer++;
-            buffer++;   /* ignore 4th byte */
+	    if (appData.byteorder == 0) {
+                rawBuffer[start++] = *buffer++;
+                rawBuffer[start++] = *buffer++;
+                rawBuffer[start++] = *buffer++;
+                buffer++;   /* ignore 4th byte */ }
+	    else if (appData.byteorder == 1) {
+		junk1 = *buffer++;
+		junk2 = *buffer++;
+		junk3 = *buffer++;
+		rawBuffer[start++] = junk3;
+		rawBuffer[start++] = junk2;
+		rawBuffer[start++] = junk1;
+		buffer++;
+            }
         }
         start += stride;
     }
