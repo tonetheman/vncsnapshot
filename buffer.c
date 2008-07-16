@@ -108,12 +108,12 @@ CopyDataToScreen(char *buffer, int x, int y, int w, int h)
             bufferBlank &= buffer[0] == 0 &&
                            buffer[1] == 0 &&
                            buffer[2] == 0;
-	    if (appData.byteorder == 0) {
+	    if (appData.byteorder == 1) {
                 rawBuffer[start++] = *buffer++;
                 rawBuffer[start++] = *buffer++;
                 rawBuffer[start++] = *buffer++;
                 buffer++;   /* ignore 4th byte */ }
-	    else if (appData.byteorder == 1) {
+	    else if (appData.byteorder == 0) {
 		junk1 = *buffer++;
 		junk2 = *buffer++;
 		junk3 = *buffer++;
